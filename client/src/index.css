@@ -103,3 +103,9 @@ button:hover,
 .btn-primary {
   @apply bg-primary dark:bg-primary hover:bg-primary/65 dark:hover:bg-primary/65;
 }
+.card {
+  @apply max-w-md w-full mx-auto mt-10  p-6 bg-white rounded-md shadow-md dark:text-white dark:bg-primaryDark
+}
+.sb-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 
+}

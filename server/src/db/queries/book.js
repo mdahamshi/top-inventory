@@ -1,11 +1,40 @@
 import { query } from '../pool.js';
 
 const queries = {
-  getAll: 'SELECT * FROM books ORDER BY id ASC',
-  getById: 'SELECT * FROM books WHERE id = $1',
-  create: 'INSERT INTO books (title, description, category_id) VALUES ($1, $2, $3) RETURNING *', // <-- Placeholder
-  update: 'UPDATE books SET title = $1, description = $2, category_id = $3, status = $4, updated_at = CURRENT_TIMESTAMP WHERE id = $5 RETURNING *', // <-- Placeholder
-  delete: 'DELETE FROM books WHERE id = $1',
+  getAll: `
+    SELECT 
+      b.*, 
+      c.name AS category_name
+    FROM 
+      books b
+    LEFT JOIN 
+      categories c ON b.category_id = c.id
+    ORDER BY b.created_at DESC
+  `,
+  getById: `
+    SELECT 
+      b.*, 
+      c.name AS category_name
+    FROM 
+      books b
+    LEFT JOIN 
+      categories c ON b.category_id = c.id
+    WHERE b.id = $1
+  `,
+  create: `
+    INSERT INTO books (title, description, category_id)
+    VALUES ($1, $2, $3)
+    RETURNING *
+  `,
+  update: `
+    UPDATE books 
+    SET title = $1, description = $2, category_id = $3, status = $4, updated_at = CURRENT_TIMESTAMP 
+    WHERE id = $5 
+    RETURNING *
+  `,
+  delete: `
+    DELETE FROM books WHERE id = $1
+  `,
 };
 
 const book = {

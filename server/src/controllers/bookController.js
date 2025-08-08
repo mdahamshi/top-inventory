@@ -2,8 +2,8 @@ import db from '../db/db.js';
 
 export const getAllBooks = async (req, res, next) => {
   try {
-    const items = await db.book.getAll();
-    res.json(items);
+    const books = await db.book.getAll(); // Includes category_name now
+    res.json(books);
   } catch (error) {
     next(error);
   }
@@ -11,10 +11,14 @@ export const getAllBooks = async (req, res, next) => {
 
 export const getBookById = async (req, res, next) => {
   const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid book ID' });
+  }
+
   try {
-    const item = await db.book.getById([id]);
-    if (!item) return res.status(404).json({ error: 'Book not found' });
-    res.json(item);
+    const book = await db.book.getById([id]); // Includes category_name now
+    if (!book) return res.status(404).json({ error: 'Book not found' });
+    res.json(book);
   } catch (error) {
     next(error);
   }
@@ -22,10 +26,14 @@ export const getBookById = async (req, res, next) => {
 
 export const createBook = async (req, res, next) => {
   try {
-    // NOTE: You must customize these params according to your model
     const { title, description, category_id } = req.body;
-    const newItem = await db.book.create([title, description, category_id]);
-    res.status(201).json(newItem);
+
+    if (!title || !category_id) {
+      return res.status(400).json({ error: 'Title and category_id are required' });
+    }
+
+    const newBook = await db.book.create([title, description ?? '', category_id]);
+    res.status(201).json(newBook);
   } catch (error) {
     next(error);
   }
@@ -33,11 +41,21 @@ export const createBook = async (req, res, next) => {
 
 export const updateBook = async (req, res, next) => {
   const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid book ID' });
+  }
+
   try {
-    // NOTE: You must customize these params according to your model
     const { title, description, category_id, status } = req.body;
-    const updatedItem = await db.book.update([title, description, category_id, status, id]);
-    res.json(updatedItem);
+
+    if (!title || !category_id || !status) {
+      return res.status(400).json({ error: 'Title, category_id, and status are required' });
+    }
+
+    const updatedBook = await db.book.update([title, description ?? '', category_id, status, id]);
+    if (!updatedBook) return res.status(404).json({ error: 'Book not found' });
+
+    res.json(updatedBook);
   } catch (error) {
     next(error);
   }
@@ -45,6 +63,10 @@ export const updateBook = async (req, res, next) => {
 
 export const deleteBook = async (req, res, next) => {
   const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid book ID' });
+  }
+
   try {
     await db.book.delete([id]);
     res.json({ message: 'Book deleted' });

@@ -10,6 +10,7 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@sarawebs/sb-hooks": "^1.0.0",
     "@sarawebs/sb-utils": "^2.0.0",
     "date-fns": "^2.30.0",
     "flowbite-react": "^0.12.5",

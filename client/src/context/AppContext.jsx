@@ -1,36 +1,19 @@
-import { createContext, useMemo, useContext, useEffect, useState } from 'react';
-
+import { createContext, useMemo, useContext } from 'react';
 export const AppContext = createContext({
   appName: 'My App',
-  toggleTheme: () => {},
-  theme: 'light',
 });
 
 export function AppProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
-  });
-  const appName = 'SaraBooks';
-  useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved) setTheme(saved);
-  }, []);
 
-  useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-  const toggleTheme = () =>
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+
+  const appName = 'SaraBooks';
+
 
   const value = useMemo(
     () => ({
-      toggleTheme,
-      appName,
-      theme,
+      appName
     }),
-    [theme]
+    []
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

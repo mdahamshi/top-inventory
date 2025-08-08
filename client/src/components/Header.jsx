@@ -7,30 +7,32 @@ import {
   Button,
 } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import {useTheme} from '@sarawebs/sb-hooks';
 
-import { SendHorizontal, Sun, Moon } from 'lucide-react';
+import { Album, Sun, Moon } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { links } from '../assets/links';
 
 export default function Component() {
-  const { theme, appName, toggleTheme } = useApp();
+  const { appName } = useApp();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <Navbar className="sticky z-5 shadow-md flex  top-0">
       <NavbarBrand href="#">
-        <SendHorizontal className="size-10 mr-5 stroke-primary" />
+        <Album className="size-10 mr-5 stroke-primary" />
         <span className="self-center text-primary  whitespace-nowrap text-2xl font-semibold ">
           {appName}
         </span>
       </NavbarBrand>
       <div className="flex md:order-2  gap-4 items-center justify-end">
-        <Button onClick={toggleTheme} className="btn-primary">
+        <span onClick={toggleTheme} className="clickable">
           {theme === 'dark' ? (
-            <Moon className="dark:stroke-white stroke-3" />
+            <Moon className="dark:stroke-white stroke-2" />
           ) : (
-            <Sun className="dark:stroke-white stroke-3" />
+            <Sun className="dark:stroke-white stroke-2" />
           )}
-        </Button>
+        </span>
         <NavbarToggle />
       </div>
       <NavbarCollapse>

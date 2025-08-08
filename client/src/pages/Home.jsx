@@ -1,12 +1,9 @@
 import { useState } from 'react';
 
-import MessageBubble from '../components/MessageBubble';
 import { useApp } from '../context/AppContext';
-import { getRandomColor } from '@sarawebs/sb-utils';
 import { MessageCircle } from 'lucide-react';
 import NewMessage from '../components/NewMessage';
-import { useMessages } from '../context/MessageContext';
-
+import BookList from '../components/BookList';
 import { Button } from 'flowbite-react';
 
 export default function Home() {
@@ -14,29 +11,19 @@ export default function Home() {
   const [open, setModal] = useState(false);
 
   return (
-    <div className="home">
+    <div className="flex flex-col gap-2">
       <h1 className="text-4xl font-bold mb-4 text-primary">
         Welcome to the {appName}
       </h1>
 
-      <section>
-        <div className="flex flex-col  gap-4 mx-auto max-w-100">
+      <section >
+        <div className="flex mb-20  flex-col  gap-4 mx-auto ">
           <h2>Books</h2>
           <button onClick={() => navigate('/books/new')}>+ Add Book</button>
-          <ul>
-            {books.map((book) => (
-              <li key={book.id}>
-                {book.title}
-                <button onClick={() => navigate(`/books/${book.id}/edit`)}>
-                  Edit
-                </button>
-                <button onClick={() => remove(book.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+          <BookList />
         </div>
       </section>
-      <section className="mt-5 dark:text-white">
+      <section className=" dark:text-white ">
         <h2>
           Visit{' '}
           <a
@@ -59,7 +46,6 @@ export default function Home() {
       >
         <MessageCircle size={24} strokeWidth={3}></MessageCircle>
       </Button>
-      <NewMessage open={open} onClose={handleModalClose} />
     </div>
   );
 }

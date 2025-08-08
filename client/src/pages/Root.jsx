@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation ,useNavigation} from 'react-router-dom';
 import Footer from '../components/Footer';
 import LoadingOverlay from '../components/LoadingOverly';
 import { getRandomColor } from '@sarawebs/sb-utils';
 import { useApp } from '../context/AppContext';
 import Copyright from '../components/Copyright';
-import { useMessages } from '../context/MessageContext';
 
 const colors = [
   '345 75% 31%', // #8e1330
@@ -35,8 +34,8 @@ const colors = [
 export default function Root() {
   const { appName } = useApp();
   const location = useLocation();
-  const { loading } = useMessages();
-
+  const navigation = useNavigation();
+  const loading = navigation.state === 'loading';
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--primary',
@@ -48,7 +47,7 @@ export default function Root() {
     <>
       <Header />
 
-      <main>
+      <main className='dark:text-white '>
         <div className="wrap">
           {loading && <LoadingOverlay />}
           {!loading && <Outlet />}
