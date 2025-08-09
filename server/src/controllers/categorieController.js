@@ -2,12 +2,21 @@ import db from '../db/db.js';
 
 export const getAllCategories = async (req, res, next) => {
   try {
-    const items = await db.categorie.getAll();
+    const search = req.query.search?.trim();
+    let items;
+
+    if (search) {
+      items = await db.categorie.searchByName([`%${search}%`]);
+    } else {
+      items = await db.categorie.getAll();
+    }
+
     res.json(items);
   } catch (error) {
     next(error);
   }
 };
+
 
 export const getCategorieById = async (req, res, next) => {
   const id = parseInt(req.params.id);

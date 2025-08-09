@@ -3,23 +3,61 @@ import { query } from '../pool.js';
 const queries = {
   getAll: `
     SELECT 
-      b.*, 
-      c.name AS category_name
-    FROM 
-      books b
-    LEFT JOIN 
-      categories c ON b.category_id = c.id
-    ORDER BY b.created_at DESC
+      b.id,
+      b.title,
+      b.description,
+      b.status,
+      b.created_at,
+      b.updated_at,
+      c.id as category_id,
+      CASE 
+        WHEN c.id IS NULL THEN NULL
+        ELSE jsonb_build_object(
+          'id', c.id,
+          'name', c.name
+        )
+      END AS category,
+      jsonb_agg(
+        jsonb_build_object(
+          'id', a.id,
+          'name', a.name
+        )
+      ) FILTER (WHERE a.id IS NOT NULL) AS authors
+    FROM books b
+    LEFT JOIN categories c ON b.category_id = c.id
+    LEFT JOIN book_authors ba ON ba.book_id = b.id
+    LEFT JOIN authors a ON ba.author_id = a.id
+    GROUP BY b.id, c.id, c.name, c.description
+    ORDER BY b.id;
   `,
   getById: `
     SELECT 
-      b.*, 
-      c.name AS category_name
-    FROM 
-      books b
-    LEFT JOIN 
-      categories c ON b.category_id = c.id
+      b.id,
+      b.title,
+      b.description,
+      b.status,
+      b.created_at,
+      b.updated_at,
+      c.id as category_id,
+      CASE 
+        WHEN c.id IS NULL THEN NULL
+        ELSE jsonb_build_object(
+          'id', c.id,
+          'name', c.name
+        )
+      END AS category,
+      jsonb_agg(
+        jsonb_build_object(
+          'id', a.id,
+          'name', a.name
+        )
+      ) FILTER (WHERE a.id IS NOT NULL) AS authors
+    FROM books b
+    LEFT JOIN categories c ON b.category_id = c.id
+    LEFT JOIN book_authors ba ON ba.book_id = b.id
+    LEFT JOIN authors a ON ba.author_id = a.id
     WHERE b.id = $1
+    GROUP BY b.id, c.id, c.name, c.description;
   `,
   create: `
     INSERT INTO books (title, description, category_id)

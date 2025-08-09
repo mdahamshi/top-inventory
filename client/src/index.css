@@ -84,14 +84,21 @@ body {
   min-height: 100dvh;
   background-color: var(--bgPrimary);
 }
+
+.clickable,
+.btn-secondry,
+button,
+.link-btn {
+  @apply transition ease-in-out duration-300;
+}
+
 .clickable:hover,
+.btn-secondry,
 button:hover,
 .link-btn:hover {
-  filter: brightness(1.1);
-  cursor: pointer;
-  transform: scale(1.03);
-  transition: all 0.3s ease;
+  @apply brightness-110 scale-[1.03] cursor-pointer;
 }
+
 
 .dark {
   --primary: white;
@@ -103,9 +110,14 @@ button:hover,
 .btn-primary {
   @apply bg-primary dark:bg-primary hover:bg-primary/65 dark:hover:bg-primary/65;
 }
+
 .card {
-  @apply max-w-md w-full mx-auto mt-10  p-6 bg-white rounded-md shadow-md dark:text-white dark:bg-primaryDark
+  @apply max-w-md w-full mx-auto  p-6 bg-white rounded-md shadow-md dark:text-white dark:bg-primaryDark
 }
+
 .sb-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3
+}
+.btn-secondry {
+  @apply bg-gray-300 text-black 
 }

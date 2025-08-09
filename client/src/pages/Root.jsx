@@ -54,8 +54,8 @@ export default function Root() {
         </div>
       </main>
 
-      <Footer className="mt-auto p-2 dark:bg-primaryDark">
-        <Copyright appName={appName} />
+      <Footer>
+        <Copyright  appName={appName} />
       </Footer>
     </>
   );

@@ -1,8 +1,17 @@
 import db from '../db/db.js';
 
+
 export const getAllAuthors = async (req, res, next) => {
   try {
-    const items = await db.author.getAll();
+    const search = req.query.search?.trim();
+    let items;
+
+    if (search) {
+      items = await db.author.searchByName([`%${search}%`]);
+    } else {
+      items = await db.author.getAll();
+    }
+
     res.json(items);
   } catch (error) {
     next(error);

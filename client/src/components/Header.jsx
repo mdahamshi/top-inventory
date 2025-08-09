@@ -19,7 +19,7 @@ export default function Component() {
 
   return (
     <Navbar className="sticky z-5 shadow-md flex  top-0">
-      <NavbarBrand href="#">
+      <NavbarBrand href="/">
         <Album className="size-10 mr-5 stroke-primary" />
         <span className="self-center text-primary  whitespace-nowrap text-2xl font-semibold ">
           {appName}

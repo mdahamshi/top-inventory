@@ -3,8 +3,9 @@ import { query } from '../pool.js';
 const queries = {
   getAll: 'SELECT * FROM authors ORDER BY id ASC',
   getById: 'SELECT * FROM authors WHERE id = $1',
-  create: 'INSERT INTO authors (name, bio) VALUES ($1,$2) RETURNING *', // <-- Placeholder
-  update: 'UPDATE authors SET name = $1, bio = $2 WHERE id = $3 RETURNING *', // <-- Placeholder
+  searchByName: 'SELECT * FROM authors WHERE name ILIKE $1 ORDER BY name ASC LIMIT 20',
+  create: 'INSERT INTO authors (name, bio) VALUES ($1,$2) RETURNING *',
+  update: 'UPDATE authors SET name = $1, bio = $2 WHERE id = $3 RETURNING *',
   delete: 'DELETE FROM authors WHERE id = $1',
 };
 
@@ -16,6 +17,10 @@ const author = {
   getById: async (params = []) => {
     const res = await query(queries.getById, params);
     return res.rows[0];
+  },
+  searchByName: async (params = []) => {
+    const res = await query(queries.searchByName, params);
+    return res.rows;
   },
   create: async (params = []) => {
     const res = await query(queries.create, params);

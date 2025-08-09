@@ -2,14 +2,13 @@ import { useState } from 'react';
 
 import { useApp } from '../context/AppContext';
 import { MessageCircle } from 'lucide-react';
-import NewMessage from '../components/NewMessage';
 import BookList from '../components/BookList';
 import { Button } from 'flowbite-react';
-
+import { useNavigate } from 'react-router-dom';
 export default function Home() {
   const { appName } = useApp();
   const [open, setModal] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-4xl font-bold mb-4 text-primary">

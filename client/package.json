@@ -10,14 +10,18 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
-    "@sarawebs/sb-hooks": "^1.0.0",
+    "@mdi/js": "^7.4.47",
+    "@mdi/light-js": "^0.2.63",
+    "@mdi/react": "^1.6.1",
+    "@sarawebs/sb-hooks": "^1.0.6",
     "@sarawebs/sb-utils": "^2.0.0",
     "date-fns": "^2.30.0",
     "flowbite-react": "^0.12.5",
     "lucide-react": "^0.534.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.7.0"
+    "react-router-dom": "^7.7.0",
+    "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
