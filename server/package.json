@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --require dotenv/config  src/index.js",
-    "start": "node src/index.js",
+    "start": "node --require dotenv/config src/index.js",
     "format": "npx prettier --write ."
   },
   "dependencies": {
