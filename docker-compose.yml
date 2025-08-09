@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${SERVICE_USER_POSTGRES}
       POSTGRES_PASSWORD: ${SERVICE_PASSWORD_POSTGRES}
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_sarabooks:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d
     networks:
       - sarabooks
@@ -39,7 +39,7 @@ services:
 
 
 volumes:
-  pgdata:
+  pgdata_sarabooks:
 
 networks:
   sarabooks:
