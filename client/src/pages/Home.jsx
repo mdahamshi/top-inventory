@@ -25,7 +25,7 @@ export default function Home() {
           Visit{' '}
           <a
             aria-label="Git Repo"
-            href="https://github.com/mdahamshi/top-basic-msg-full"
+            href="https://github.com/mdahamshi/top-inventory"
           >
             Git Repo
           </a>{' '}
