@@ -32,17 +32,7 @@ export default function Home() {
           for more information
         </h2>
       </section>
-      <Button
-        className="fixed bottom-4 p-0 right-4 z-50 shadow-lg bg-primary text-white hover:bg-primary/70 w-14 h-14 rounded-full flex items-center justify-center"
-        onClick={() => {
-          if (location.pathname !== '/new') {
-            window.history.replaceState(null, '', '/new');
-            setModal(true);
-          }
-        }}
-      >
-        <MessageCircle size={24} strokeWidth={3}></MessageCircle>
-      </Button>
+
     </div>
   );
 }
