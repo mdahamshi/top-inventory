@@ -99,7 +99,6 @@ button:hover,
   @apply brightness-110 scale-[1.03] cursor-pointer;
 }
 
-
 .dark {
   --primary: white;
   --accent: var(--primary);
@@ -112,12 +111,12 @@ button:hover,
 }
 
 .card {
-  @apply max-w-md w-full mx-auto  p-6 bg-white rounded-md shadow-md dark:text-white dark:bg-primaryDark
+  @apply max-w-md w-full mx-auto  p-6 bg-white rounded-md shadow-md dark:text-white dark:bg-primaryDark;
 }
 
 .sb-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3;
 }
 .btn-secondry {
-  @apply bg-gray-300 text-black 
+  @apply bg-gray-300 text-black;
 }

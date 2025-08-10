@@ -1,4 +1,3 @@
-
 const apiUrl = `/api/Datas`;
 
 const parseJSON = async (res) => {

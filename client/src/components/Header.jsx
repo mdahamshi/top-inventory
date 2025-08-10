@@ -7,15 +7,13 @@ import {
   Button,
 } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import {useTheme} from '@sarawebs/sb-hooks';
 
 import { Album, Sun, Moon } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { links } from '../assets/links';
 
 export default function Component() {
-  const { appName } = useApp();
-  const { theme, toggleTheme } = useTheme();
+  const { appName, theme, toggleTheme } = useApp();
 
   return (
     <Navbar className="sticky z-5 shadow-md flex  top-0">

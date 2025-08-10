@@ -6,7 +6,7 @@ export default function ListWrapper({
   items = [],
   loading = false,
   error = null,
-  renderItem, 
+  renderItem,
   gridClassName = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5',
 }) {
   if (loading) return <p>Loading {title}...</p>;
@@ -17,9 +17,7 @@ export default function ListWrapper({
   return (
     <ul className={gridClassName}>
       {items.map((item) => (
-        <div  key={item.id}>
-          {renderItem(item)}
-        </div>
+        <div key={item.id}>{renderItem(item)}</div>
       ))}
     </ul>
   );

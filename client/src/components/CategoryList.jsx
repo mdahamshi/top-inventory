@@ -22,7 +22,7 @@ export default function CategoryList() {
       createItem={createCategory}
       updateItem={updateCategory}
       deleteItem={deleteCategory}
-      className='card'
+      className="card"
     />
   );
 }

@@ -1,6 +1,5 @@
 import db from '../db/db.js';
 
-
 export const getAllAuthors = async (req, res, next) => {
   try {
     const search = req.query.search?.trim();

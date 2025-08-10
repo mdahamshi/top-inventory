@@ -17,7 +17,6 @@ export const getAllCategories = async (req, res, next) => {
   }
 };
 
-
 export const getCategorieById = async (req, res, next) => {
   const id = parseInt(req.params.id);
   try {

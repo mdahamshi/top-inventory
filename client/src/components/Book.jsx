@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import {
   Eye,
   Notebook,
@@ -41,8 +41,7 @@ const Book = React.memo(function Book({ book, update, remove }) {
       remove(book.id);
     }
   };
-const strokeColor = useMemo(() => getRandomColor(), [book.id]);
-
+  const strokeColor = useMemo(() => getRandomColor(), [book.id]);
 
   return (
     <div className="border-l-8 border-primary card h-full flex flex-col justify-between">

@@ -27,7 +27,6 @@ services:
     networks:
       - sarabooks
 
-
   client:
     build:
       context: ./client
@@ -36,7 +35,6 @@ services:
     restart: always
     networks:
       - sarabooks
-
 
 volumes:
   pgdata_sarabooks:

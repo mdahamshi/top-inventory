@@ -22,7 +22,7 @@ export default function AuthorList() {
       createItem={createAuthor}
       updateItem={updateAuthor}
       deleteItem={deleteAuthor}
-      className='card'
+      className="card"
     />
   );
 }

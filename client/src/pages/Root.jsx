@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
-import { Outlet, useLocation ,useNavigation} from 'react-router-dom';
+import { Outlet, useLocation, useNavigation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import LoadingOverlay from '../components/LoadingOverly';
 import { getRandomColor } from '@sarawebs/sb-utils';
@@ -47,7 +47,7 @@ export default function Root() {
     <>
       <Header />
 
-      <main className='dark:text-white '>
+      <main className="dark:text-white ">
         <div className="wrap">
           {loading && <LoadingOverlay />}
           {!loading && <Outlet />}
@@ -55,7 +55,7 @@ export default function Root() {
       </main>
 
       <Footer>
-        <Copyright  appName={appName} />
+        <Copyright appName={appName} />
       </Footer>
     </>
   );

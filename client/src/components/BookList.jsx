@@ -27,7 +27,7 @@ export default function BookList() {
       loading={loading}
       error={error}
       renderItem={(book) => (
-          <Book book={book} update={update} remove={remove} />
+        <Book book={book} update={update} remove={remove} />
       )}
     />
   );

@@ -19,8 +19,8 @@ const customStyles = {
     backgroundColor: state.isActive
       ? 'hsl(var(--primary) / 0.4)' // active click with slight opacity
       : state.isFocused
-      ? 'hsl(var(--primary) / 0.3)' // lighter background on focus
-      : 'white',
+        ? 'hsl(var(--primary) / 0.3)' // lighter background on focus
+        : 'white',
     color: 'inherit',
     ':active': {
       backgroundColor: 'hsl(var(--primary) / 0.4)', // override default blue on click-and-hold
@@ -31,7 +31,6 @@ const customStyles = {
     color: 'inherit',
   }),
 };
-
 
 export default function CategorySelect({
   value,

@@ -44,14 +44,18 @@ export default function EntityList({
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm(`Are you sure you want to delete this ${title.toLowerCase()}?`)) {
+    if (
+      window.confirm(
+        `Are you sure you want to delete this ${title.toLowerCase()}?`
+      )
+    ) {
       await deleteItem(id);
       if (editId === id) handleCancelEdit();
     }
   };
 
   const renderItem = ({ id, [itemLabel]: name }) => (
-    <li key={id} className={className + " flex items-center gap-3"}>
+    <li key={id} className={className + ' flex items-center gap-3'}>
       {editId === id ? (
         <>
           <TextInput
@@ -59,9 +63,8 @@ export default function EntityList({
             onChange={(e) => setEditName(e.target.value)}
             className="flex-grow"
           />
-          
-          <Button size="sm" className="btn-primary" onClick={handleUpdate}>
 
+          <Button size="sm" className="btn-primary" onClick={handleUpdate}>
             Save
             <Icon path={mdilContentSave} className="ml-2" size={1} />
           </Button>
@@ -72,10 +75,14 @@ export default function EntityList({
       ) : (
         <>
           <span className="flex-grow">{name}</span>
-          <Button size="sm" className="btn-primary" onClick={() => handleEditStart(id, name)}>
+          <Button
+            size="sm"
+            className="btn-primary"
+            onClick={() => handleEditStart(id, name)}
+          >
             Edit
           </Button>
-          <Button size="sm" color="red"  onClick={() => handleDelete(id)}>
+          <Button size="sm" color="red" onClick={() => handleDelete(id)}>
             Delete
           </Button>
         </>
@@ -102,7 +109,9 @@ export default function EntityList({
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
         />
-        <Button className="btn-primary self-center" onClick={handleAdd}>Add</Button>
+        <Button className="btn-primary self-center" onClick={handleAdd}>
+          Add
+        </Button>
       </div>
     </div>
   );

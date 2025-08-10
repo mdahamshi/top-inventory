@@ -1,14 +1,14 @@
 export const links = [
   {
     id: 'books/new',
-    text: 'New Book'
+    text: 'New Book',
   },
   {
     id: 'categories',
-    text: 'Categories'
+    text: 'Categories',
   },
   {
     id: 'authors',
-    text: 'Authors'
-  }
+    text: 'Authors',
+  },
 ];
