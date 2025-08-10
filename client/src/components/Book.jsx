@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 const Book = React.memo(function Book({ book, update, remove }) {
   const navigate = useNavigate();
   const statuses = ['unread', 'reading', 'read'];
-  console.log('Render Book:', book.id);
 
   const statusIcons = {
     unread: mdiBookAlphabet,
