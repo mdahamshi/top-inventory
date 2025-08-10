@@ -11,14 +11,12 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-4xl font-bold mb-4 text-primary">
+      <h1 className="text-4xl font-bold mb-8 text-primary">
         Welcome to the {appName}
       </h1>
 
-      <section >
+      <section>
         <div className="flex mb-20  flex-col  gap-4 mx-auto ">
-          <h2>Books</h2>
-          <button onClick={() => navigate('/books/new')}>+ Add Book</button>
           <BookList />
         </div>
       </section>
