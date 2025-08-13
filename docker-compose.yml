@@ -31,8 +31,10 @@ services:
     networks:
       - sarabooks
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://client:80/api/health || exit 1"]
-
+      test: ["CMD-SHELL", "curl -f http://server:4000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
   client:
     build:
       context: ./client
@@ -42,7 +44,7 @@ services:
     networks:
       - sarabooks
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://server:4000/api/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://client:80/api/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 2
