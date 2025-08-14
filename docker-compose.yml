@@ -10,8 +10,7 @@ services:
     volumes:
       - pgdata_sarabooks:/var/lib/postgresql/data
       - ./server/src/db/init:/docker-entrypoint-initdb.d
-    networks:
-      - sarabooks
+
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -28,8 +27,7 @@ services:
       DATABASE_URL: postgres://${SERVICE_USER_POSTGRES}:${SERVICE_PASSWORD_POSTGRES}@postgres:5432/${SERVICE_USER_POSTGRES}
     depends_on:
       - postgres
-    networks:
-      - sarabooks
+
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://server:4000/api/health || exit 1"]
       interval: 30s
@@ -41,8 +39,7 @@ services:
       dockerfile: Dockerfile
     container_name: sarabooks_client
     restart: always
-    networks:
-      - sarabooks
+
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://sarabooks_client:80/api/health || exit 1"]
       interval: 30s
@@ -51,5 +48,3 @@ services:
 volumes:
   pgdata_sarabooks:
 
-networks:
-  sarabooks:
